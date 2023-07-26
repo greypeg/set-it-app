@@ -8,7 +8,7 @@ interface LayoutInterface{
 
 export const Layout: React.FC<LayoutInterface> = ({ children }) => {
     return (
-        <div>
+        <div className="font-haskoy">
             <Navbar />
             {children}
             <Footer />

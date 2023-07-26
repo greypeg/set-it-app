@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "Haskoy";
+        font-weight: 400;
+        src: url("/fonts/Haskoy-Regular.ttf") format("ttf"),
+    }
+    @font-face {
+        font-family: "Haskoy";
+        font-weight: 400;
+        font-style: italic;
+        src: url("/fonts/Haskoy-Italic.ttf") format("ttf"),
+    }
+}
