@@ -22,8 +22,7 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight">
             Your <span className="text-[#5856B9]">business management</span> made simple.
           </h1>
-          <div className="text-center">The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!</div>
-
+          <div className="text-center">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
           <div className="grid grid-cols-2 gap-4"><Button overrides={{
             BaseButton: {
               style: () => ({
@@ -55,7 +54,7 @@ const Home: NextPage = () => {
               </div>
               <h3 className="text-xl font-bold tracking-tight text-center">Save Time</h3>
               <span className="tracking-tight text-center">
-                Spend less time on administrative work and more time on high-value activities.
+                {"Spend less time on administrative work and more time on high-value activities."}
               </span>
             </div>
             <div className="grid gap-4 justify-center items-center">
@@ -64,7 +63,7 @@ const Home: NextPage = () => {
               </div>
               <h3 className="text-xl font-bold tracking-tight text-center">Analytics</h3>
               <span className="tracking-tight text-center">
-                Overview of your business's performance metrics on a single dashboard.
+                {"Overview of your business's performance metrics on a single dashboard."}
               </span>
             </div>
             <div className="grid gap-4 justify-center items-center">
