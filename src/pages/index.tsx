@@ -1,12 +1,54 @@
 import { Button } from "baseui/button";
 import { type NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
+import { ReactNode } from "react";
+import { FeaturesContainer } from "~/components/features-container";
 import { AnalyticsIcon } from "~/components/icons";
 import { HourglassIcon } from "~/components/icons";
 import { MegaphoneIcon } from "~/components/icons";
 import { PeopleIcon } from "~/components/icons";
 import { RocketIcon } from "~/components/icons";
 import { ToolsIcon } from "~/components/icons";
+
+interface Features {
+  text: string;
+  title: string;
+  Icon: ReactNode;
+}
+
+const featuresList: Features[] = [
+  {
+    title: "Save Time",
+    text: "Spend less time on administrative work and more time on high-value activities.",
+    Icon: <HourglassIcon size="48" />
+  },
+  {
+    title: "Analytics",
+    text: "Overview of your business's performance metrics on a single dashboard.",
+    Icon: <AnalyticsIcon size="48" />
+  },
+  {
+    title: "Marketing",
+    text: "   Data-driven approach gives you actionable insights into your marketing efforts.",
+    Icon: <MegaphoneIcon size="48" />
+  },
+  {
+    title: "Personnel Management",
+    text: "Monitor employees' work hours, approve or reject leave requests, and maintain accurate records.",
+    Icon: <PeopleIcon size="48" />
+  },
+  {
+    title: "Customer Experience",
+    text: "Upgrade and run your business like a pro and give your customers the best experience!",
+    Icon: <RocketIcon size="48" />
+  },
+  {
+    title: "Online Support",
+    text: "Available 24 hours a day, 7 days a week, and 365 days a year to respond to your queries.",
+    Icon: <ToolsIcon size="48" />
+  }
+]
 
 const Home: NextPage = () => {
 
@@ -22,7 +64,7 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight font-haskoy">
             Your <span className="text-[#5856B9]">business management</span> made simple.
           </h1>
-          <div className="text-center">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
+          <div className="text-center md:px-16 px-8">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
           <div className="grid grid-cols-2 gap-4"><Button overrides={{
             BaseButton: {
               style: () => ({
@@ -48,59 +90,13 @@ const Home: NextPage = () => {
             Why choose <span className="text-[#5856B9]">SetItApp</span>
           </h2>
           <div className="grid md:grid-cols-6 gap-4 sm:grid-cols-2 px-12">
-            <div className="grid gap-4 justify-center items-center">
-              <div className="flex justify-center">
-                <HourglassIcon size="48" />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight text-center">Save Time</h3>
-              <span className="tracking-tight text-center">
-                {"Spend less time on administrative work and more time on high-value activities."}
-              </span>
-            </div>
-            <div className="grid gap-4 justify-center items-center">
-              <div className="flex justify-center">
-                <AnalyticsIcon size="48" />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight text-center">Analytics</h3>
-              <span className="tracking-tight text-center">
-                {"Overview of your business's performance metrics on a single dashboard."}
-              </span>
-            </div>
-            <div className="grid gap-4 justify-center items-center">
-              <div className="flex justify-center">
-                <MegaphoneIcon size="48" />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight text-center">Marketing</h3>
-              <span className="tracking-tight text-center">
-                Data-driven approach gives you actionable insights into your marketing efforts.
-              </span>
-            </div>
-            <div className="grid gap-4 justify-center items-center">
-              <div className="flex justify-center">
-                <PeopleIcon size="48" />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight text-center">Personnel Management</h3>
-              <span className="tracking-tight text-center">
-                {"Monitor employees' work hours, approve or reject leave requests, and maintain accurate records."}
-              </span>
-            </div>
-            <div className="grid gap-4 justify-center items-center">
-              <div className="flex justify-center">
-                <RocketIcon size="48" />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight text-center">Customer Experience</h3>
-              <span className="tracking-tight text-center">
-                Upgrade and run your business like a pro and give your customers the best experience!
-              </span>
-            </div>
-            <div className="grid gap-4 justify-center">
-              <div className="flex justify-center items-center">
-                <ToolsIcon size="48" />
-              </div>
-              <h3 className="text-xl font-bold tracking-tight text-center">Online Support</h3>
-              <span className="tracking-tight text-center">
-                Available 24 hours a day, 7 days a week, and 365 days a year to respond to your queries.
-              </span>
+            {featuresList.map((item: Features) => <FeaturesContainer title={item.title} text={item.text} CustomIcon={item.Icon} key={`key${item.title}`} />)}
+          </div>
+          <div className="w-screen bg-[#0D0C0F] h-[24rem] md:h-[32rem]">
+            <div className="text-white text-3xl font-bold p-6">{"Take control of"}<span className="text-[#94cbc4]"> {"business"}</span>  {"like never before"}</div>
+            <div className="grid md:grid-cols-2 justify-center items-center">
+              <div className="text-white text-xl font-bold md:px-24 leading-10 hidden md:block">{"Whether you're a small startup or an established enterprise, our app is tailored to cater to your"}<span className="text-[#94cbc4]"> {"unique business needs."}</span> {"Here's what SetApp can do for you:"}</div>
+              <img alt="image with list" src={"/images/Artboard11.png"} width={"760"} height={"540"}></img>
             </div>
           </div>
           <h2 className="text-3xl font-extrabold tracking-tight text-center">

@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { useState } from "react";;
+import { useState } from "react";
+import { CloseIcon, MenuIcon } from "../icons";
 
 
 export const Navbar: React.FC = () => {
@@ -12,14 +13,14 @@ export const Navbar: React.FC = () => {
         <div className='w-full h-[80px] z-10 bg-white drop-shadow-lg'>
             <div className='px-2 flex md:justify-around justify-between items-center w-full h-full'>
                 <div className='flex items-center'>
-                    <h1 className='text-3xl font-bold mr-4 sm:text-4xl'>SetItApp</h1>
+                    <h1 className='mr-4 text-3xl font-bold sm:text-4xl'>SetApp.</h1>
                 </div>
                 <div className='hidden md:flex pr-4'>
                     <div className='flex items-center gap-16'>
                         <ul className='grid gap-8 hidden md:flex'>
                             <li><Link href={"/"}>Home</Link></li>
-                            <li><Link href={"/"}>About</Link></li>
                             <li><Link href={"/"}>Pricing</Link></li>
+                            <li><Link href={"/"}>Our Team</Link></li>
                             <li><Link href={"/"}>Contact</Link></li>
                         </ul>
                         {/* {!user.isSignedIn ?
@@ -50,7 +51,7 @@ export const Navbar: React.FC = () => {
                     </div>
                 </div>
                 <div className='md:hidden mr-4' onClick={handleClick}>
-                    {/* {!nav ? <HiMenuAlt1 className='w-5' /> : <HiX className='w-5' />} */}
+                    {!nav ? <MenuIcon /> : <div className="ease-in-out duration-300"> <CloseIcon /> </div>}
                 </div>
             </div>
             <div>

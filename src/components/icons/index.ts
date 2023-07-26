@@ -5,4 +5,6 @@ export { MegaphoneIcon } from './megaphone';
 export { PeopleIcon } from './people';
 export { RocketIcon } from './rocket';
 export { SettingsIcon } from './settings';
-export { ToolsIcon } from './tools'
+export { ToolsIcon } from './tools';
+export { MenuIcon } from './menu';
+export { CloseIcon } from './close'
