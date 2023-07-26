@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 
           <div className="grid grid-cols-2 gap-4"><Button overrides={{
             BaseButton: {
-              style: ({ $theme }) => ({
+              style: () => ({
                 background: "linear-gradient(55deg, rgba(88,86,185,1) 0%, rgba(148,203,196,1) 100%);"
               })
             }
