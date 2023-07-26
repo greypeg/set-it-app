@@ -64,7 +64,7 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight font-haskoy">
             Your <span className="text-[#5856B9]">business management</span> made simple.
           </h1>
-          <div className="text-center md:px-16 px-8">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
+          <div className="text-center md:px-72 px-8">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
           <div className="grid grid-cols-2 gap-4"><Button overrides={{
             BaseButton: {
               style: () => ({
@@ -86,8 +86,8 @@ const Home: NextPage = () => {
               }
             }}>See Pricing →</Button>
           </div>
-          <h2 className="text-3xl font-extrabold tracking-tight text-center">
-            Why choose <span className="text-[#5856B9]">SetItApp</span>
+          <h2 className="text-3xl font-extrabold tracking-tight text-center pt-12">
+            Why choose <span className="text-[#5856B9]">SetApp</span>
           </h2>
           <div className="grid md:grid-cols-6 gap-4 sm:grid-cols-2 px-12">
             {featuresList.map((item: Features) => <FeaturesContainer title={item.title} text={item.text} CustomIcon={item.Icon} key={`key${item.title}`} />)}
