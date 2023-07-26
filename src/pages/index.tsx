@@ -81,7 +81,7 @@ const Home: NextPage = () => {
               </div>
               <h3 className="text-xl font-bold tracking-tight text-center">Personnel Management</h3>
               <span className="tracking-tight text-center">
-                Monitor employees' work hours, approve or reject leave requests, and maintain accurate records.
+                {"Monitor employees' work hours, approve or reject leave requests, and maintain accurate records."}
               </span>
             </div>
             <div className="grid gap-4 justify-center items-center">
