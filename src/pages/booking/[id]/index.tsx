@@ -8,8 +8,6 @@ import { Accordion, Panel } from "baseui/accordion";
 import { StatefulCalendar } from 'baseui/datepicker';
 import { Avatar } from "baseui/avatar";
 
-type Props = {}
-
 const SpacedButton: React.FC<any> = (props) => {
     return (
         <Button
@@ -65,14 +63,10 @@ const dons = {
 const Booking: NextPage = () => {
     const [current, setCurrent] = useState(0);
     const [css, theme] = useTheme();
-    const [selectedOption, setSelectedOption] = useState('');
-    const [value, setValue] = useState([]);
-
-    const [showTimeSlots, setShowTimeSlots] = useState('');
 
     return (
         <div className="flex flex-col items-center justify-center bg-white text-black">
-            <div className="flex flex-col items-center justify-around gap-12 px-4 py-16 ">  
+            <div className="flex flex-col items-center justify-around gap-12 px-4 py-16 ">
                 <ProgressSteps current={current} overrides={{
                     Root: {
                         style: ({ $theme }) => ({
