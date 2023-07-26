@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-type CardWithBorderProps = {
+interface CardWithBorderProps {
     title: string;
     text: string;
 };

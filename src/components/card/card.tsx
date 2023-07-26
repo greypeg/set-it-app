@@ -1,7 +1,7 @@
 "use client";
 import React, { ReactNode } from "react";
 
-type CardProps = {
+interface CardProps {
     title?: string;
     text?: string;
     color?: string;

@@ -2,7 +2,7 @@
 import React, { ReactNode } from 'react';
 
 
-export type CustomIconType = {
+export interface CustomIconType {
     size: string
     children: ReactNode
 };

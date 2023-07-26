@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           }}>Start for free</Button>
             <Button overrides={{
               BaseButton: {
-                style: ({ $theme }) => ({
+                style: () => ({
                   outline: "#5856B9 solid",
                   backgroundColor: 'white',
                   color: "#5856B9",
