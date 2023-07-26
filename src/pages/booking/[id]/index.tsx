@@ -8,25 +8,25 @@ import { Accordion, Panel } from "baseui/accordion";
 import { StatefulCalendar } from 'baseui/datepicker';
 import { Avatar } from "baseui/avatar";
 
-const SpacedButton: React.FC<any> = (props) => {
-    return (
-        <Button
-            {...props}
-            shape={SHAPE.pill}
-            kind={KIND.secondary}
-            size={SIZE.compact}
-            overrides={{
-                BaseButton: {
-                    style: ({ $theme }) => ({
-                        marginLeft: $theme.sizing.scale200,
-                        marginRight: $theme.sizing.scale200,
-                        marginTop: $theme.sizing.scale800,
-                    }),
-                },
-            }}
-        />
-    );
-}
+// const SpacedButton: React.FC<{children: React.ReactNode}> = (props) => {
+//     return (
+//         <Button
+//             {...props}
+//             shape={SHAPE.pill}
+//             kind={KIND.secondary}
+//             size={SIZE.compact}
+//             overrides={{
+//                 BaseButton: {
+//                     style: ({ $theme }) => ({
+//                         marginLeft: $theme.sizing.scale200,
+//                         marginRight: $theme.sizing.scale200,
+//                         marginTop: $theme.sizing.scale800,
+//                     }),
+//                 },
+//             }}
+//         />
+//     );
+// }
 
 
 const dons = {
@@ -173,9 +173,9 @@ const Booking: NextPage = () => {
                                 </ListItem>
                             </Panel>
                         </Accordion>
-                        <SpacedButton onClick={() => setCurrent(1)}>
+                        {/* <SpacedButton onClick={() => setCurrent(1)}>
                             Next
-                        </SpacedButton>
+                        </SpacedButton> */}
                     </NumberedStep>
                     <NumberedStep title="Choose Provider">
                         <div className={css({ ...theme.typography.ParagraphSmall })}>
@@ -190,12 +190,12 @@ const Booking: NextPage = () => {
                                 <ListItemLabel>Gregory Papas</ListItemLabel>
                             </ListItem>
                         </div>
-                        <SpacedButton onClick={() => setCurrent(0)}>
+                        {/* <SpacedButton onClick={() => setCurrent(0)}>
                             Previous
-                        </SpacedButton>
-                        <SpacedButton onClick={() => setCurrent(2)}>
+                        </SpacedButton> */}
+                        {/* <SpacedButton onClick={() => setCurrent(2)}>
                             Next
-                        </SpacedButton>
+                        </SpacedButton> */}
                     </NumberedStep>
                     <NumberedStep title="Date and time">
                         <div className={css({ ...theme.typography.ParagraphSmall })}>
@@ -205,10 +205,10 @@ const Booking: NextPage = () => {
                                 onChange={({ date }) => console.log(date)}
                             />
                         </div>
-                        <SpacedButton onClick={() => setCurrent(1)}>
+                        {/* <SpacedButton onClick={() => setCurrent(1)}>
                             Previous
                         </SpacedButton>
-                        <SpacedButton disabled>Next</SpacedButton>
+                        <SpacedButton disabled>Next</SpacedButton> */}
                     </NumberedStep>
                 </ProgressSteps>
             </div>
