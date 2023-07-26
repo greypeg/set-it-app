@@ -1,6 +1,6 @@
+import { Button } from "baseui/button";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Button } from "~/components/baseweb-ui/button";
 import { AnalyticsIcon } from "~/components/icons";
 import { HourglassIcon } from "~/components/icons";
 import { MegaphoneIcon } from "~/components/icons";
