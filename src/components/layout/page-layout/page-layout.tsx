@@ -2,7 +2,11 @@ import React, { PropsWithChildren } from "react";
 import { Footer } from "~/components/footer"
 import { Navbar } from "~/components/navbar";
 
-export const Layout: React.FC = ({ children }: PropsWithChildren) => {
+interface LayoutInterface{
+    children?: React.ReactNode;
+}
+
+export const Layout: React.FC<LayoutInterface> = ({ children }) => {
     return (
         <div>
             <Navbar />
