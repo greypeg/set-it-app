@@ -1,9 +1,8 @@
 import { Icon } from "../icon"
 
-export type CustomIconType = {
+export interface CustomIconType {
     size?: string
 };
-
 
 export const AnalyticsIcon: React.FC<CustomIconType> = ({ size = "24" }) => (
     <Icon size={size}>

@@ -1,9 +1,5 @@
+import { CustomIconType } from "../analytics/analytics";
 import { Icon } from "../icon"
-
-export type CustomIconType = {
-    size?: string
-};
-
 
 export const PeopleIcon: React.FC<CustomIconType> = ({ size = "24" }) => (
     <Icon size={size}>
