@@ -19,9 +19,9 @@ export const Navbar: React.FC = () => {
                     <div className='flex items-center gap-16'>
                         <ul className='grid gap-8 hidden md:flex'>
                             <li><Link href={"/"}>Home</Link></li>
-                            <li><Link href={"/"}>Pricing</Link></li>
-                            <li><Link href={"/"}>Our Team</Link></li>
-                            <li><Link href={"/"}>Contact</Link></li>
+                            <li><Link href={"/pricing"}>Pricing</Link></li>
+                            <li><Link href={"/our-team"}>Our Team</Link></li>
+                            <li><Link href={"/contact"}>Contact</Link></li>
                         </ul>
                         {/* {!user.isSignedIn ?
                             <>

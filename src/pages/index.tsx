@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { FeaturesContainer } from "~/components/features-container";
 import { AnalyticsIcon, HourglassIcon, MegaphoneIcon, PeopleIcon, RocketIcon, ToolsIcon } from "~/components/icons";
 import { Button } from "baseui/button";
+import { useRouter } from 'next/router'
 
 interface Features {
   text: string;
@@ -46,7 +47,7 @@ const featuresList: Features[] = [
 ]
 
 const Home: NextPage = () => {
-
+  const router = useRouter();
   return (
     <div>
       <Head>
@@ -56,7 +57,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex flex-col items-center justify-center md:p-20 p-8">
         <div className="flex flex-col items-center justify-around gap-12 text-center">
-          <h1 className="text-5xl font-extrabold tracking-tight font-haskoy">
+          <h1 className="text-5xl font-extrabold tracking-tight">
             Your <span className="text-[#5856B9]">business management</span> made simple.
           </h1>
           <div className="text-center md:px-72 px-8">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
@@ -67,7 +68,7 @@ const Home: NextPage = () => {
               })
             }
           }}>Start for free</Button>
-            <Button overrides={{
+            <Button onClick={() => router.push('/pricing')} overrides={{
               BaseButton: {
                 style: () => ({
                   outline: "#5856B9 solid",
