@@ -18,10 +18,10 @@ export const Navbar: React.FC = () => {
                 <div className='hidden md:flex pr-4'>
                     <div className='flex items-center gap-16'>
                         <ul className='grid gap-8 hidden md:flex'>
-                            <li><Link href={"/"}>Home</Link></li>
-                            <li><Link href={"/pricing"}>Pricing</Link></li>
-                            <li><Link href={"/our-team"}>Our Team</Link></li>
-                            <li><Link href={"/contact"}>Contact</Link></li>
+                            <li><Link href={"/"} className="hover:underline">Home</Link></li>
+                            <li><Link href={"/pricing"} className="hover:underline">Pricing</Link></li>
+                            <li><Link href={"/our-team"} className="hover:underline">Our Team</Link></li>
+                            <li><Link href={"/contact"} className="hover:underline">Contact</Link></li>
                         </ul>
                         {/* {!user.isSignedIn ?
                             <>
@@ -56,12 +56,12 @@ export const Navbar: React.FC = () => {
             </div>
             <div>
                 <ul className={!nav ? 'hidden' : 'absolute bg-white w-full px-8 py-8 h-screen flex flex-col gap-8'}>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/"}>Home</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/home"}>About</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/home"}>Pricing</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/home"}>Contact</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/home"}>FAQ</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/home"}>Contact</Link></li>
+                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/"} className="hover:underline">Home</Link></li>
+                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/pricing"} className="hover:underline">Pricing</Link></li>
+                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/out-team"} className="hover:underline">Our Team</Link></li>
+                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/licensing"} className="hover:underline">Licensing</Link></li>
+                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/contact"} className="hover:underline">Contact</Link></li>
+
                     <div className='flex flex-col my-4'>
                         {/* {!user.isSignedIn ?
                             <>
