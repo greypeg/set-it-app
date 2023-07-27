@@ -1,15 +1,10 @@
-import { Button } from "baseui/button";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { ReactNode } from "react";
 import { FeaturesContainer } from "~/components/features-container";
-import { AnalyticsIcon } from "~/components/icons";
-import { HourglassIcon } from "~/components/icons";
-import { MegaphoneIcon } from "~/components/icons";
-import { PeopleIcon } from "~/components/icons";
-import { RocketIcon } from "~/components/icons";
-import { ToolsIcon } from "~/components/icons";
+import { AnalyticsIcon, HourglassIcon, MegaphoneIcon, PeopleIcon, RocketIcon, ToolsIcon } from "~/components/icons";
+import { Button } from "baseui/button";
 
 interface Features {
   text: string;
@@ -30,22 +25,22 @@ const featuresList: Features[] = [
   },
   {
     title: "Marketing",
-    text: "   Data-driven approach gives you actionable insights into your marketing efforts.",
+    text: "Data-driven approach gives you actionable insights into your marketing efforts.",
     Icon: <MegaphoneIcon size="48" />
   },
   {
     title: "Personnel Management",
-    text: "Monitor employees' work hours, approve or reject leave requests, and maintain accurate records.",
+    text: "Monitor employees' work hours, approve or reject leave requests, etc.",
     Icon: <PeopleIcon size="48" />
   },
   {
     title: "Customer Experience",
-    text: "Upgrade and run your business like a pro and give your customers the best experience!",
+    text: "Run your business like a pro and give your customers the best experience!",
     Icon: <RocketIcon size="48" />
   },
   {
     title: "Online Support",
-    text: "Available 24 hours a day, 7 days a week, and 365 days a year to respond to your queries.",
+    text: "Available 24 hours a day, 7 days a week, and 365 days a year!",
     Icon: <ToolsIcon size="48" />
   }
 ]
@@ -95,8 +90,11 @@ const Home: NextPage = () => {
           <div className="w-screen bg-[#0D0C0F] h-[24rem] md:h-[32rem]">
             <div className="text-white text-3xl font-bold p-6">{"Take control of"}<span className="text-[#94cbc4]"> {"business"}</span>  {"like never before"}</div>
             <div className="grid md:grid-cols-2 justify-center items-center">
-              <div className="text-white text-xl font-bold md:px-24 leading-10 hidden md:block">{"Whether you're a small startup or an established enterprise, our app is tailored to cater to your"}<span className="text-[#94cbc4]"> {"unique business needs."}</span> {"Here's what SetApp can do for you:"}</div>
-              <img alt="image with list" src={"/images/Artboard11.png"} width={"760"} height={"540"}></img>
+              <div className="text-white text-xl font-bold md:px-24 leading-10 hidden md:block">
+                {"Whether you're a small startup or an established enterprise, our app is tailored to cater to your"}
+                <span className="text-[#94cbc4]"> {"unique business needs."}</span> {"Here's what SetApp can do for you:"}
+              </div>
+              <Image alt="image with list" src={"/images/Artboard11.png"} width={"760"} height={"540"}></Image>
             </div>
           </div>
           <h2 className="text-3xl font-extrabold tracking-tight text-center">
