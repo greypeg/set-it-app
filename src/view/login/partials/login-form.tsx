@@ -14,7 +14,7 @@ interface LoginFormInputs {
 
 export const LoginForm: React.FC = () => {
 
-    const { handleSubmit, control, reset } = useForm<LoginFormInputs>({
+    const { handleSubmit, control } = useForm<LoginFormInputs>({
         defaultValues: {
             email: "",
             password: ""
