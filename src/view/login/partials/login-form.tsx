@@ -21,7 +21,7 @@ export const LoginForm: React.FC = () => {
         },
     })
 
-    const onSubmit: SubmitHandler<LoginFormInputs> = (props) => console.log(props)
+    // const onSubmit: SubmitHandler<LoginFormInputs> = (props) => console.log(props)
 
     return (
         <div className="flex flex-col pt-4">
@@ -32,7 +32,7 @@ export const LoginForm: React.FC = () => {
                     </span>
                 </Button>
      
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+            <form className="flex flex-col">
                 <Controller
                     name="email"
                     control={control}
