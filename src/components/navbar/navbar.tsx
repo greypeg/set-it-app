@@ -3,10 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { useState } from "react";
 import { CloseIcon, MenuIcon } from "../icons";
-
+import { Button } from "baseui/button";
+import { useRouter } from "next/router";
 
 export const Navbar: React.FC = () => {
-
+    const router = useRouter();
     const [nav, setNav] = useState(false);
     const handleClick = () => setNav(!nav);
     return (
@@ -23,6 +24,15 @@ export const Navbar: React.FC = () => {
                             <li><Link href={"/our-team"} className="hover:underline">Our Team</Link></li>
                             <li><Link href={"/contact"} className="hover:underline">Contact</Link></li>
                         </ul>
+                        <Button
+                            onClick={() => router.push('/login')}
+                            overrides={{
+                                BaseButton: {
+                                    style: () => ({
+                                        background: "linear-gradient(55deg, rgba(88,86,185,1) 0%, rgba(148,203,196,1) 100%);"
+                                    })
+                                }
+                            }}>Login</Button>
                         {/* {!user.isSignedIn ?
                             <>
                               

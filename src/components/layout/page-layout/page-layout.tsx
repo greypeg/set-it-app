@@ -2,16 +2,20 @@ import React from "react";
 import { Footer } from "~/components/footer"
 import { Navbar } from "~/components/navbar";
 
-interface LayoutInterface{
+interface LayoutInterface {
     children?: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutInterface> = ({ children }) => {
     return (
-        <div className="font-haskoy">
+        <>
             <Navbar />
-            {children}
-            <Footer />
-        </div>
+            <div className="font-haskoy flex flex-col h-screen">
+                {children}
+                <div className="mt-auto">
+                    <Footer />
+                </div>
+            </div>
+        </>
     );
 };

@@ -8,3 +8,4 @@ export { SettingsIcon } from './settings';
 export { ToolsIcon } from './tools';
 export { MenuIcon } from './menu';
 export { CloseIcon } from './close'
+export { GoogleIcon } from './google'

@@ -61,13 +61,14 @@ const Home: NextPage = () => {
             Your <span className="text-[#5856B9]">business management</span> made simple.
           </h1>
           <div className="text-center md:px-72 px-8">{"The future of your business is data-driven and prosperous. Our Business Management Platform is here to guide you on your journey to success. Embrace the power of information and unlock your business's full potential today!"}</div>
-          <div className="grid grid-cols-2 gap-4"><Button overrides={{
-            BaseButton: {
-              style: () => ({
-                background: "linear-gradient(55deg, rgba(88,86,185,1) 0%, rgba(148,203,196,1) 100%);"
-              })
-            }
-          }}>Start for free</Button>
+          <div className="grid grid-cols-2 gap-4">
+            <Button overrides={{
+              BaseButton: {
+                style: () => ({
+                  background: "linear-gradient(55deg, rgba(88,86,185,1) 0%, rgba(148,203,196,1) 100%);"
+                })
+              }
+            }}>Start for free</Button>
             <Button onClick={() => router.push('/pricing')} overrides={{
               BaseButton: {
                 style: () => ({
