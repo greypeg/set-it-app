@@ -1,39 +1,76 @@
+"use-client";
 import { Input } from "baseui/input";
 import { FormControl } from "baseui/form-control";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button } from "baseui/button";
 import { GoogleIcon } from "~/components/icons";
+import { api } from "~/utils/api";
 import { signIn } from "next-auth/react";
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from "next/router";
+import { z } from "zod";
 
-interface LoginFormInputs {
+interface SignUpFormInputs {
+    name: string;
     email: string;
     password: string;
-    rememberMe: boolean;
 }
 
+export const userSchema = z.object({
+    name: z.string().min(3),
+    email: z.string().min(1, { message: "Email is required" }).email(),
+    password: z.string().min(8, { message: "Password must be atleast 6 characters" })
+        .regex(new RegExp(".*[A-Z].*"), "One uppercase character")
+        .regex(new RegExp(".*[a-z].*"), "One lowercase character")
+        .regex(
+            new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
+            "One special character"
+        ),
+});
 
-export const LoginForm: React.FC = () => {
+
+export const SignUpForm: React.FC = () => {
     const router = useRouter();
-    const { handleSubmit, control } = useForm<LoginFormInputs>({
+    const { handleSubmit, control } = useForm<SignUpFormInputs>({
+        resolver: zodResolver(userSchema),
         defaultValues: {
+            name: "",
             email: "",
-            password: ""
+            // password: "",
         },
     })
+    const userSignUpMutation = api.user.signUp.useMutation({
+    });
 
-    // const onSubmit: SubmitHandler<LoginFormInputs> = (props) => console.log(props)
+    const onSubmit: SubmitHandler<SignUpFormInputs> = (data: SignUpFormInputs) => {
+        userSignUpMutation.mutate({
+            name: data.name,  
+            email: data?.email,
+            // password: data.password,
+          });
+     }
 
     return (
         <div className="flex flex-col pt-4 gap-12">
 
             <Button onClick={() => signIn('google', { callbackUrl: '/dashboard' })}>
                 <span className="flex gap-4 text-center">
-                    <GoogleIcon /> Login with Google
+                    <GoogleIcon /> Sign up with Google
                 </span>
             </Button>
 
-            <form className="flex flex-col">
+            <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+                <Controller
+                    name="name"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                        <FormControl
+                            label={() => "Name"}>
+                            <Input {...field} />
+                        </FormControl>
+                    )}
+                />
                 <Controller
                     name="email"
                     control={control}
@@ -63,7 +100,7 @@ export const LoginForm: React.FC = () => {
                         })
                     }
                 }}>
-                    Login
+                    Sign Up
                 </Button>
             </form>
         </div>

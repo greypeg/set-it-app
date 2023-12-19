@@ -12,6 +12,7 @@ export const LoginView: React.FC = ({ }) => {
                 linkUrl="/signup"
             />
             <LoginForm />
+
             <div className="flex items-center justify-between gap-12 pt-8 ">
                 <div className="flex items-center">
                     <input
@@ -32,5 +33,5 @@ export const LoginView: React.FC = ({ }) => {
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { GoogleIcon } from "~/components/icons";
 
 export const Header: React.FC<{ heading: string, linkName: string, linkUrl: string; paragraph: string }> = ({ heading,
     paragraph,
@@ -20,9 +18,7 @@ export const Header: React.FC<{ heading: string, linkName: string, linkUrl: stri
                     {linkName}
                 </Link>
                 <br />
-
             </p>
-            
         </div>
     )
 }
