@@ -42,7 +42,7 @@ export const SignUpForm: React.FC = () => {
     const userSignUpMutation = api.user.signUp.useMutation({
     });
 
-    const onSubmit: SubmitHandler<SignUpFormInputs> = (data: SignUpFormInputs) => {
+    const onSubmit: SubmitHandler<SignUpFormInputs> = async (data: SignUpFormInputs) => {
         try {
             userSignUpMutation.mutate({
                 name: data.name,

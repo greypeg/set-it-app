@@ -18,6 +18,7 @@ declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
       id: string;
+      randomKey?: string; // Assuming randomKey is optional, adjust accordingly
       // ...other properties
       // role: UserRole;
     };
@@ -51,7 +52,7 @@ export const authOptions: NextAuthOptions = {
     },
     jwt: ({ token, user }) => {
       if (user) {
-        const u = user as any
+        const u = user as { id: string; randomKey?: string };
         return {
           ...token,
           id: u?.id,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, SIZE } from 'baseui/modal';
+import { Modal, ModalHeader, ModalBody, SIZE } from 'baseui/modal';
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { api } from '~/utils/api';
