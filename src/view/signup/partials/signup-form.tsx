@@ -1,4 +1,4 @@
-"use-client";
+
 import { Input } from "baseui/input";
 import { FormControl } from "baseui/form-control";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
