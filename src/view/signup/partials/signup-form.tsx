@@ -44,7 +44,7 @@ export const SignUpForm: React.FC = () => {
 
     const onSubmit: SubmitHandler<SignUpFormInputs> = async (data: SignUpFormInputs) => {
         try {
-            userSignUpMutation.mutate({
+            await userSignUpMutation.mutate({
                 name: data.name,
                 email: data?.email,
                 password: data.password,
