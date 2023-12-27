@@ -3,10 +3,22 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, SIZE } from 'baseui/modal';
 import { Button } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { api } from '~/utils/api';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { FormControl } from 'baseui/form-control';
 
+interface CreateServiceInputs {
+    name: string;
+    cost: number;
+    time_required: number;
+}
 export const CreateServiceModal = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { data: business } = api.business.getBusiness.useQuery();
+    const { handleSubmit, control } = useForm<CreateServiceInputs>({
+        defaultValues: {
+            name: "", cost: 0, time_required: 0
+        },
+    })
     const openModal = () => {
         setIsOpen(true);
     };
@@ -15,14 +27,11 @@ export const CreateServiceModal = () => {
         setIsOpen(false);
     };
 
-    const submitForm = async () => {
-        // Add your logic to submit the form data
-        // You can gather data from all steps and perform the submission
+
+    const onSubmit: SubmitHandler<CreateServiceInputs> = (data: CreateServiceInputs) => {
         try {
-            await createServiceMutation.mutate({
-                name: 'service',
-                cost: 5,
-                time_required: 5,
+            createServiceMutation.mutate({
+                ...data,
                 businessId: business?.id ?? 1
             });
 
@@ -32,8 +41,8 @@ export const CreateServiceModal = () => {
             // Handle any error that occurred during the mutation
             console.error('Error creating business:', error);
         }
-    };
 
+    }
 
     const createServiceMutation = api.service.create.useMutation({
     });
@@ -44,15 +53,43 @@ export const CreateServiceModal = () => {
             <Modal isOpen={isOpen} onClose={closeModal} size={SIZE.default}>
                 <ModalHeader>Create Business Form</ModalHeader>
                 <ModalBody>
-                    <form className="flex flex-col gap-8">
-                        <Input placeholder="Service Name" />
-                        <Input placeholder="Service Cost" />
-                        <Input placeholder="Time required" />
+                    <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+                        <Controller
+                            name="name"
+                            control={control}
+                            rules={{ required: true }}
+                            render={({ field }) => (
+                                <FormControl
+                                    label={() => "Name"}>
+                                    <Input {...field} />
+                                </FormControl>
+                            )}
+                        />
+                         <Controller
+                            name="cost"
+                            control={control}
+                            rules={{ required: true }}
+                            render={({ field }) => (
+                                <FormControl
+                                    label={() => "Cost"}>
+                                    <Input {...field} />
+                                </FormControl>
+                            )}
+                        />
+                         <Controller
+                            name="time_required"
+                            control={control}
+                            rules={{ required: true }}
+                            render={({ field }) => (
+                                <FormControl
+                                    label={() => "Time Required"}>
+                                    <Input {...field} />
+                                </FormControl>
+                            )}
+                        />
+                        <Button type='submit'>Submit</Button>
                     </form>
                 </ModalBody>
-                <ModalFooter>
-                    <Button onClick={submitForm}>Submit</Button>
-                </ModalFooter>
             </Modal>
         </>
     );
