@@ -11,6 +11,7 @@ const config = {
     "plugin:@typescript-eslint/stylistic-type-checked",
   ],
   rules: {
+
     // "@typescript-eslint/consistent-type-imports": [
     //   "warn",
     //   {
@@ -19,6 +20,12 @@ const config = {
     //   },
     // ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-misused-promises": [2, {
+      "checksVoidReturn": {
+        "attributes": false
+      }
+    }]
+
   },
 };
 
