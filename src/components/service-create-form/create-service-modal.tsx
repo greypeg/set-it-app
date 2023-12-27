@@ -6,26 +6,24 @@ import { api } from '~/utils/api';
 
 export const CreateServiceModal = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [currentStep, setCurrentStep] = useState(1);
     const { data: business } = api.business.getBusiness.useQuery();
     const openModal = () => {
         setIsOpen(true);
-        setCurrentStep(1);
     };
 
     const closeModal = () => {
         setIsOpen(false);
     };
 
-    const submitForm = () => {
+    const submitForm = async () => {
         // Add your logic to submit the form data
         // You can gather data from all steps and perform the submission
-        createServiceMutation.mutate({
-            name: 'service',  
+        await createServiceMutation.mutate({
+            name: 'service',
             cost: 5,
             time_required: 5,
             businessId: business?.id || 1
-          });
+        });
 
         console.log('Form submitted successfully!');
         closeModal();

@@ -54,8 +54,8 @@ export const authOptions: NextAuthOptions = {
         const u = user as unknown as any
         return {
           ...token,
-          id: u.id,
-          randomKey: u.randomKey
+          id: u?.id,
+          randomKey: u?.randomKey
         }
       }
       return token

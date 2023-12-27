@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
-import { useState } from 'react'
-import { ProgressSteps, NumberedStep, } from "baseui/progress-steps";
-import { Button, SHAPE, KIND, SIZE } from 'baseui/button';
-import { useTheme } from '~/components/layout/theme';
-import { ListItem, ListItemLabel } from "baseui/list";
-import { Accordion, Panel } from "baseui/accordion";
-import { StatefulCalendar } from 'baseui/datepicker';
-import { Avatar } from "baseui/avatar";
+// import { useState } from 'react'
+// import { ProgressSteps, NumberedStep, } from "baseui/progress-steps";
+// import { Button, SHAPE, KIND, SIZE } from 'baseui/button';
+// import { useTheme } from '~/components/layout/theme';
+// import { ListItem, ListItemLabel } from "baseui/list";
+// import { Accordion, Panel } from "baseui/accordion";
+// import { StatefulCalendar } from 'baseui/datepicker';
+// import { Avatar } from "baseui/avatar";
 
 // const SpacedButton: React.FC<{children: React.ReactNode}> = (props) => {
 //     return (

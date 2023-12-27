@@ -29,8 +29,8 @@ export const CreateBusinessModal = () => {
     const createBusinessMutation = api.business.create.useMutation({
     });
 
-    const onSubmit: SubmitHandler<CreateBusinessInputs> = (data: CreateBusinessInputs) => {
-        createBusinessMutation.mutate(data.name);
+    const onSubmit: SubmitHandler<CreateBusinessInputs> = async (data: CreateBusinessInputs) => {
+        await createBusinessMutation.mutate(data.name);
         closeModal();
     }
 
