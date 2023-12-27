@@ -4,10 +4,9 @@ import { FormControl } from "baseui/form-control";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { Button } from "baseui/button";
 import { GoogleIcon } from "~/components/icons";
-import { api } from "~/utils/api";
+
 import { signIn } from "next-auth/react";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from "next/router";
 import { z } from "zod";
 
 interface SignUpFormInputs {
@@ -30,8 +29,7 @@ export const userSchema = z.object({
 
 
 export const SignUpForm: React.FC = () => {
-    const router = useRouter();
-    const { handleSubmit, control } = useForm<SignUpFormInputs>({
+    const { control } = useForm<SignUpFormInputs>({
         resolver: zodResolver(userSchema),
         defaultValues: {
             name: "",
@@ -39,23 +37,23 @@ export const SignUpForm: React.FC = () => {
             // password: "",
         },
     })
-    const userSignUpMutation = api.user.signUp.useMutation({
-    });
+    // const userSignUpMutation = api.user.signUp.useMutation({
+    // });
 
-    const onSubmit: SubmitHandler<SignUpFormInputs> = async (data: SignUpFormInputs) => {
-        try {
-            await userSignUpMutation.mutate({
-                name: data.name,
-                email: data?.email,
-                password: data.password,
-            });
+    const onSubmit: SubmitHandler<SignUpFormInputs> =  (data: SignUpFormInputs) => {
+        // try {
+        //     await userSignUpMutation.mutate({
+        //         name: data.name,
+        //         email: data?.email,
+        //         password: data.password,
+        //     });
 
-            router.push('/dashboard')
-        }
-        catch (error) {
-            // Handle any error that occurred during the mutation
-            console.error('Error creating business:', error);
-        }
+        //     router.push('/dashboard')
+        // }
+        // catch (error) {
+        //     // Handle any error that occurred during the mutation
+        //     console.error('Error creating business:', error);
+        // }
     }
 
     return (
@@ -67,7 +65,7 @@ export const SignUpForm: React.FC = () => {
                 </span>
             </Button>
 
-            <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+            <form className="flex flex-col">
                 <Controller
                     name="name"
                     control={control}
