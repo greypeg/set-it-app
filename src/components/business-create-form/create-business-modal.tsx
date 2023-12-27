@@ -12,7 +12,7 @@ interface CreateBusinessInputs {
 export const CreateBusinessModal = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { handleSubmit, control } = useForm<CreateBusinessInputs>({
+    const { handleSubmit, control, formState } = useForm<CreateBusinessInputs>({
         defaultValues: {
             name: "",
         },
@@ -40,7 +40,16 @@ export const CreateBusinessModal = () => {
             // Handle any error that occurred during the mutation
             console.error('Error creating business:', error);
         }
+
     }
+
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!formState.isSubmitting) {
+            handleSubmit(onSubmit)(e);
+        }
+    };
 
     return (
         <>
@@ -48,7 +57,7 @@ export const CreateBusinessModal = () => {
             <Modal isOpen={isOpen} onClose={closeModal} size={SIZE.default}>
                 <ModalHeader>Create Business Form</ModalHeader>
                 <ModalBody>
-                    <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="flex flex-col" onSubmit={handleFormSubmit}>
                         <Controller
                             name="name"
                             control={control}
