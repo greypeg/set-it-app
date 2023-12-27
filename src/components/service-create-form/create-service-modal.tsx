@@ -20,7 +20,7 @@ export const CreateServiceModal = () => {
     const submitForm = () => {
         // Add your logic to submit the form data
         // You can gather data from all steps and perform the submission
-        userSignUpMutation.mutate({
+        createServiceMutation.mutate({
             name: 'service',  
             cost: 5,
             time_required: 5,
@@ -32,7 +32,7 @@ export const CreateServiceModal = () => {
     };
 
 
-    const userSignUpMutation = api.service.create.useMutation({
+    const createServiceMutation = api.service.create.useMutation({
     });
 
     return (

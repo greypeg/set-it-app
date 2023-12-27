@@ -1,12 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import { ReactNode } from "react";
 import { FeaturesContainer } from "~/components/features-container";
 import { AnalyticsIcon, HourglassIcon, MegaphoneIcon, PeopleIcon, RocketIcon, ToolsIcon } from "~/components/icons";
 import { Button } from "baseui/button";
 import { useRouter } from 'next/router'
-import { useSession } from "next-auth/react";
 
 interface Features {
   text: string;

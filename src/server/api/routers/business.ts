@@ -20,6 +20,16 @@ export const businessRouter = createTRPCRouter({
     return business
   }),
   create: protectedProcedure.input(businessInput).mutation(async ({ ctx, input }) => {
+    const userId = ctx.session.user?.id; // Assuming you have user information in the context
+
+    if (!userId) {
+      throw new Error('User not authenticated');
+    }
+    // Update the user's hasBusiness field to true
+    await ctx.prisma.user.update({
+      where: { id: userId },
+      data: { hasBusiness: true },
+    });
     return ctx.prisma.business.create({
       data: {
         name: input,

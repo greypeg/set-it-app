@@ -64,5 +64,5 @@ export const serviceRouter = createTRPCRouter({
     return deletedService;
   }),
 
-  update: protectedProcedure.input(z.number({ required_error: "id" })).mutation(async ({ ctx }) => { })
+  // update: protectedProcedure.input(z.number({ required_error: "id" })).mutation(async ({ ctx }) => { })
 });

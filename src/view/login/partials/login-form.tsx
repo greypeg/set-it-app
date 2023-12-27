@@ -4,7 +4,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Button } from "baseui/button";
 import { GoogleIcon } from "~/components/icons";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 
 interface LoginFormInputs {
     email: string;
@@ -14,8 +13,7 @@ interface LoginFormInputs {
 
 
 export const LoginForm: React.FC = () => {
-    const router = useRouter();
-    const { handleSubmit, control } = useForm<LoginFormInputs>({
+    const { control } = useForm<LoginFormInputs>({
         defaultValues: {
             email: "",
             password: ""

@@ -36,17 +36,17 @@ export const userRouter = createTRPCRouter({
             userSchema
         )
         .mutation(({ input, ctx }) => {
-            const { email, password } = input;
+            const { email } = input;
             const user = ctx.prisma.user.findUnique({
                 where: {
                     email
                 }
             });
-            if(!user)
-            //throw exception
+            if (!user)
+                //throw exception
 
 
-            return user;
+                return user;
         }),
 
     getUser: protectedProcedure.query(async ({ ctx }) => {
