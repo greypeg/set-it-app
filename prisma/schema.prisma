@@ -53,9 +53,60 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
+    password      String?
     accounts      Account[]
     sessions      Session[]
+    hasBusiness   Boolean?  @default(false)
+    business      Business?
 }
+
+// Business model
+model Business {
+  id         Int       @id @default(autoincrement())
+  name       String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  services   Service[]
+  staff      Staff[]
+
+  // User relation
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String    @unique
+}
+
+// Service model
+model Service {
+  id              Int      @id @default(autoincrement())
+  name            String
+  cost            Float
+  time_required   Int
+  staff_available StaffService[]
+  business        Business @relation(fields: [businessId], references: [id])
+  businessId      Int
+}
+
+// Staff model
+model Staff {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  services    StaffService[]
+  business    Business @relation(fields: [businessId], references: [id])
+
+  // Service relation
+  businessId  Int
+}
+
+// StaffService model to represent the many-to-many relationship between Service and Staff
+model StaffService {
+  staff      Staff @relation(fields: [staffId], references: [id])
+  staffId    Int
+  service    Service @relation(fields: [serviceId], references: [id])
+  serviceId  Int
+
+  @@id([staffId, serviceId])
+}
+
 
 model VerificationToken {
     identifier String

@@ -46,8 +46,10 @@ export const SignUpForm: React.FC = () => {
         userSignUpMutation.mutate({
             name: data.name,  
             email: data?.email,
-            // password: data.password,
+            password: data.password,
           });
+
+          router.push('/dashboard')
      }
 
     return (

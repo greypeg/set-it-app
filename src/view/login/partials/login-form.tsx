@@ -1,6 +1,6 @@
 import { Input } from "baseui/input";
 import { FormControl } from "baseui/form-control";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { Button } from "baseui/button";
 import { GoogleIcon } from "~/components/icons";
 import { signIn } from "next-auth/react";
