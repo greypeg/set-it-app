@@ -8,7 +8,7 @@ interface CardProps {
     children?: ReactNode;
 };
 
-export const FeaturesContainer: React.FC<CardProps> = ({ children, CustomIcon, title, text }) => {
+export const FeaturesContainer: React.FC<CardProps> = ({ CustomIcon, title, text }) => {
 
     return (
         <div className="grid gap-4 justify-center">

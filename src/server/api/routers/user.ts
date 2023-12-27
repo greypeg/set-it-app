@@ -42,7 +42,7 @@ export const userRouter = createTRPCRouter({
                     email
                 }
             });
-            if (!user)
+            // if (!user)
                 //throw exception
 
 

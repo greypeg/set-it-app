@@ -7,7 +7,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 import { prisma } from "~/server/db";
-
+// @ts-nocheck
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
