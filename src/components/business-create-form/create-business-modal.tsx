@@ -29,21 +29,18 @@ export const CreateBusinessModal = () => {
     const createBusinessMutation = api.business.create.useMutation({
     });
 
-    const onSubmit: SubmitHandler<CreateBusinessInputs> = async (data: CreateBusinessInputs) => {
-        try {
-          // Trigger the mutation without awaiting
-          const mutationPromise = createBusinessMutation.mutateAsync(data.name);
-    
-          // Close the modal immediately
-          closeModal();
-    
-          // Wait for the mutation to complete
-          await mutationPromise;
-        } catch (error) {
-          // Handle any error that occurred during the mutation
-          console.error('Error creating business:', error);
-        }
-      };
+    const onSubmit: SubmitHandler<CreateBusinessInputs> = (data: CreateBusinessInputs) => {
+        // Trigger the mutation without awaiting and handle it with .then()
+        createBusinessMutation.mutateAsync(data.name)
+            .then(() => {
+                // Close the modal after the mutation is successful
+                closeModal();
+            })
+            .catch((error) => {
+                // Handle any error that occurred during the mutation
+                console.error('Error creating business:', error);
+            });
+    };
 
     return (
         <>
