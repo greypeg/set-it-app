@@ -42,15 +42,21 @@ export const SignUpForm: React.FC = () => {
     const userSignUpMutation = api.user.signUp.useMutation({
     });
 
-    const onSubmit: SubmitHandler<SignUpFormInputs> = (data: SignUpFormInputs) => {
-        userSignUpMutation.mutate({
-            name: data.name,  
-            email: data?.email,
-            password: data.password,
-          });
+    const onSubmit: SubmitHandler<SignUpFormInputs> = async (data: SignUpFormInputs) => {
+        try {
+            userSignUpMutation.mutate({
+                name: data.name,
+                email: data?.email,
+                password: data.password,
+            });
 
-          router.push('/dashboard')
-     }
+            router.push('/dashboard')
+        }
+        catch (error) {
+            // Handle any error that occurred during the mutation
+            console.error('Error creating business:', error);
+        }
+    }
 
     return (
         <div className="flex flex-col pt-4 gap-12">

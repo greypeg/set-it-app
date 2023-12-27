@@ -15,18 +15,23 @@ export const CreateServiceModal = () => {
         setIsOpen(false);
     };
 
-    const submitForm = () => {
+    const submitForm = async () => {
         // Add your logic to submit the form data
         // You can gather data from all steps and perform the submission
-        createServiceMutation.mutate({
-            name: 'service',
-            cost: 5,
-            time_required: 5,
-            businessId: business?.id ?? 1
-        });
+        try {
+            await createServiceMutation.mutate({
+                name: 'service',
+                cost: 5,
+                time_required: 5,
+                businessId: business?.id ?? 1
+            });
 
-        console.log('Form submitted successfully!');
-        closeModal();
+            console.log('Form submitted successfully!');
+            closeModal();
+        } catch (error) {
+            // Handle any error that occurred during the mutation
+            console.error('Error creating business:', error);
+        }
     };
 
 

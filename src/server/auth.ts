@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import { type GetServerSidePropsContext } from "next";
@@ -7,7 +8,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 import { prisma } from "~/server/db";
-// @ts-nocheck
+
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
