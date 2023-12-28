@@ -29,10 +29,12 @@ export const CreateServiceModal = () => {
 
 
     const onSubmit: SubmitHandler<CreateServiceInputs> = (data: CreateServiceInputs) => {
+        console.log(business?.id)
         try {
             createServiceMutation.mutate({
-                ...data,
-                businessId: business?.id ?? 1
+                name: data.name,
+                time_required: data.time_required,
+                cost: data.cost,
             });
 
             console.log('Form submitted successfully!');
@@ -65,7 +67,7 @@ export const CreateServiceModal = () => {
                                 </FormControl>
                             )}
                         />
-                         <Controller
+                        <Controller
                             name="cost"
                             control={control}
                             rules={{ required: true }}
@@ -76,7 +78,7 @@ export const CreateServiceModal = () => {
                                 </FormControl>
                             )}
                         />
-                         <Controller
+                        <Controller
                             name="time_required"
                             control={control}
                             rules={{ required: true }}

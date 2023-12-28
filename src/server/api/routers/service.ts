@@ -8,7 +8,6 @@ const serviceInput = z.object({
   name: z.string({ required_error: "Name" }).min(1).max(50),
   cost: z.number(),
   time_required: z.number(),
-  businessId: z.number(),
 });
 
 const deleteSerivce = z.object({
@@ -29,7 +28,7 @@ export const serviceRouter = createTRPCRouter({
     if (!user || !user.business) {
       throw new Error('User does not have a business');
     }
-
+    console.log(input)
     const createdService = await ctx.prisma.service.create({
       data: {
         ...input,
