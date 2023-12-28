@@ -20,16 +20,24 @@ export const Navbar: React.FC = () => {
                 </div>
                 <div className='hidden md:flex pr-4'>
                     <div className='flex items-center gap-16'>
-                        <ul className='grid gap-8 hidden md:flex'>
-                            {session?.user ? <li><Link href={"/dashboard"} className="hover:underline">Dashboard</Link></li> : null}
-                            <li><Link href={"/"} className="hover:underline">Home</Link></li>
-                            {/* <li><Link href={"/pricing"} className="hover:underline">Pricing</Link></li> */}
-                            <li><Link href={"/our-team"} className="hover:underline">Our Team</Link></li>
-                            <li><Link href={"/contact"} className="hover:underline">Contact</Link></li>
-                        </ul>
+                        {session?.user ?
+                            <ul className='grid gap-8 hidden md:flex'>
+                                <li><Link href={"/dashboard"} className="hover:underline">Dashboard</Link></li>
+                                <li><Link href={"/settings"} className="hover:underline">Settings</Link></li>
+                            </ul> :
+                            <ul className='grid gap-8 hidden md:flex'>
+
+                                <li><Link href={"/"} className="hover:underline">Home</Link></li>
+                                {/* <li><Link href={"/pricing"} className="hover:underline">Pricing</Link></li> */}
+                                <li><Link href={"/our-team"} className="hover:underline">Our Team</Link></li>
+                                <li><Link href={"/contact"} className="hover:underline">Contact</Link></li>
+                            </ul>}
                         {session && session.user ?
                             <Button
-                                onClick={() => signOut()}
+                                onClick={() => {
+                                    router.push('/')
+                                    signOut({ callbackUrl: '/', redirect: true })
+                                }}
                                 overrides={{
                                     BaseButton: {
                                         style: () => ({
@@ -53,12 +61,18 @@ export const Navbar: React.FC = () => {
             </div>
             <div>
                 <ul className={!nav ? 'hidden' : 'absolute bg-white w-full px-8 py-8 h-screen flex flex-col gap-8'}>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/"}>Home</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/pricing"}>Pricing</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/out-team"}>Our Team</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/licensing"}>Licensing</Link></li>
-                    <li className='border-b-2 border-zinc-300 w-full'><Link href={"/contact"}>Contact</Link></li>
+                    {session?.user ?
+                        <>
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/dashboard"}>Dashboard</Link></li>
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/settings"}>Settings</Link></li> </> : <>
 
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/"}>Home</Link></li>
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/pricing"}>Pricing</Link></li>
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/out-team"}>Our Team</Link></li>
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/licensing"}>Licensing</Link></li>
+                            <li className='border-b-2 border-zinc-300 w-full'><Link href={"/contact"}>Contact</Link></li>
+                        </>
+                    }
                     <div className='flex flex-col my-4'>
                         {session && session.user ?
                             <Button

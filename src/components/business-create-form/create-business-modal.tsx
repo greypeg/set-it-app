@@ -26,7 +26,11 @@ export const CreateBusinessModal = () => {
         setIsOpen(false);
     };
 
+    const trpc = api.useContext();
     const createBusinessMutation = api.business.create.useMutation({
+        onSettled: async () => {
+            await trpc.business.getBusiness.invalidate();
+        }
     });
 
     const onSubmit: SubmitHandler<CreateBusinessInputs> = async (data: CreateBusinessInputs) => {
@@ -61,7 +65,7 @@ export const CreateBusinessModal = () => {
                                 </FormControl>
                             )}
                         />
-                       <button type="submit">Submit</button>
+                        <button type="submit">Submit</button>
                     </form>
                 </ModalBody>
                 <ModalFooter>

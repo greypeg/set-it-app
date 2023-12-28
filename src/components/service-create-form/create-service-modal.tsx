@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, SIZE } from 'baseui/modal';
 import { Button } from 'baseui/button';
-import { Input } from 'baseui/input';
+import { Input, InputProps } from 'baseui/input';
 import { api } from '~/utils/api';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl } from 'baseui/form-control';
 
 interface CreateServiceInputs {
     name: string;
-    cost: number;
-    time_required: number;
+    cost: string;
+    time_required: string
 }
 export const CreateServiceModal = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { data: business } = api.business.getBusiness.useQuery();
-    const { handleSubmit, control } = useForm<CreateServiceInputs>({
+    const { handleSubmit, control, getValues, register } = useForm<CreateServiceInputs>({
         defaultValues: {
-            name: "", cost: 0, time_required: 0
+            name: "", cost: '', time_required: ''
         },
     })
     const openModal = () => {
@@ -27,14 +26,20 @@ export const CreateServiceModal = () => {
         setIsOpen(false);
     };
 
+    const trpc = api.useContext();
+
+    const createServiceMutation = api.service.create.useMutation({
+        onSettled: async () => {
+            await trpc.business.getBusiness.invalidate();
+        }
+    });
 
     const onSubmit: SubmitHandler<CreateServiceInputs> = (data: CreateServiceInputs) => {
-        console.log(business?.id)
         try {
             createServiceMutation.mutate({
                 name: data.name,
-                time_required: data.time_required,
-                cost: data.cost,
+                time_required: parseInt(data.time_required),
+                cost: parseInt(data.cost),
             });
 
             console.log('Form submitted successfully!');
@@ -44,37 +49,36 @@ export const CreateServiceModal = () => {
             console.error('Error creating business:', error);
         }
 
-    }
+    };
 
-    const createServiceMutation = api.service.create.useMutation({
-    });
 
     return (
         <>
             <Button onClick={openModal}>Create Service</Button>
             <Modal isOpen={isOpen} onClose={closeModal} size={SIZE.default}>
-                <ModalHeader>Create Business Form</ModalHeader>
+                <ModalHeader>Create Service Form</ModalHeader>
                 <ModalBody>
-                    <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+                    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
                         <Controller
                             name="name"
                             control={control}
-                            rules={{ required: true }}
+                            rules={{ required: true, }}
                             render={({ field }) => (
                                 <FormControl
-                                    label={() => "Name"}>
+                                    label={() => "Service Name"}>
                                     <Input {...field} />
                                 </FormControl>
+
                             )}
                         />
                         <Controller
                             name="cost"
                             control={control}
-                            rules={{ required: true }}
-                            render={({ field }) => (
+                            rules={{ required: true, }}
+                            render={({ field, }) => (
                                 <FormControl
                                     label={() => "Cost"}>
-                                    <Input {...field} />
+                                    <Input type="number" {...field} />
                                 </FormControl>
                             )}
                         />
@@ -82,17 +86,17 @@ export const CreateServiceModal = () => {
                             name="time_required"
                             control={control}
                             rules={{ required: true }}
-                            render={({ field }) => (
+                            render={({ field, }) => (
                                 <FormControl
                                     label={() => "Time Required"}>
-                                    <Input {...field} />
+                                    <Input type="number" {...field} />
                                 </FormControl>
                             )}
                         />
-                        <Button type='submit'>Submit</Button>
+                        <Button type="submit">Submit</Button>
                     </form>
                 </ModalBody>
-            </Modal>
+            </Modal >
         </>
     );
 };

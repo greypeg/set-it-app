@@ -17,7 +17,7 @@ const deleteSerivce = z.object({
 export const serviceRouter = createTRPCRouter({
 
   create: protectedProcedure.input(serviceInput).mutation(async ({ ctx, input }) => {
-    const userId = ctx.session.user?.id; // Assuming you have user information in the context
+    const userId = ctx.session.user?.id;
 
     if (!userId) {
       throw new Error('User not authenticated');
@@ -28,7 +28,6 @@ export const serviceRouter = createTRPCRouter({
     if (!user || !user.business) {
       throw new Error('User does not have a business');
     }
-    console.log(input)
     const createdService = await ctx.prisma.service.create({
       data: {
         ...input,
