@@ -2,7 +2,8 @@ import React from 'react';
 import { CreateServiceModal } from '../service-create-form';
 import { Button } from 'baseui/button';
 import { Accordion, Panel } from "baseui/accordion";
-type services = {
+
+interface services {
     id: number;
     name: string;
     cost: number;

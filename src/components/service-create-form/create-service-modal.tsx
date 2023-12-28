@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody, SIZE } from 'baseui/modal';
 import { Button } from 'baseui/button';
-import { Input, InputProps } from 'baseui/input';
+import { Input} from 'baseui/input';
 import { api } from '~/utils/api';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl } from 'baseui/form-control';
@@ -13,7 +13,7 @@ interface CreateServiceInputs {
 }
 export const CreateServiceModal = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { handleSubmit, control, getValues, register } = useForm<CreateServiceInputs>({
+    const { handleSubmit, control } = useForm<CreateServiceInputs>({
         defaultValues: {
             name: "", cost: '', time_required: ''
         },

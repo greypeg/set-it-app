@@ -34,9 +34,9 @@ export const Navbar: React.FC = () => {
                             </ul>}
                         {session && session.user ?
                             <Button
-                                onClick={() => {
+                                onClick={async () => {
                                     router.push('/')
-                                    signOut({ callbackUrl: '/', redirect: true })
+                                    await signOut({ callbackUrl: '/', redirect: true })
                                 }}
                                 overrides={{
                                     BaseButton: {
