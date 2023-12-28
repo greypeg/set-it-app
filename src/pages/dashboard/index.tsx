@@ -15,8 +15,8 @@ const Dashboard: NextPage = () => {
         }
     })
 
-    const onDelete = async (id: number) => {
-        await deleteMutation.mutate({ id })
+    const onDelete = (id: number) => {
+        deleteMutation.mutate({ id })
     }
 
     if (isBusinessLoading)

@@ -13,7 +13,7 @@ interface services {
 
 interface ServiceList {
     services: services[] | undefined;
-    onDelete: (id: number) => Promise<void>
+    onDelete: (id: number) => void
 }
 
 const currency = '$'
