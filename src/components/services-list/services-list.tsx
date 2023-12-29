@@ -32,7 +32,7 @@ export const ServiceList = ({ services, onDelete }: ServiceList) => {
                                 <p>{'Cost - ' + service.cost + currency}</p>
                             </div>
                             <div className='px-16 flex flex-col gap-2'>
-                                <Button shape='pill' size='compact' onClick={() => { }}>Details</Button>
+                                <Button shape='pill' size='compact'>Details</Button>
                                 <Button shape='pill' size='compact' onClick={() => onDelete(service.id)} overrides={{
                                     BaseButton: {
                                         style: () => ({

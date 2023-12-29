@@ -1,6 +1,6 @@
 import { Spinner } from "baseui/spinner";
-import { NextPage } from "next";
-import { getSession, useSession } from "next-auth/react";
+import { GetServerSidePropsContext, NextPage } from "next";
+import { getSession } from "next-auth/react";
 import { CreateBusinessModal } from "~/components/business-create-form";
 import { ServiceList } from "~/components/services-list";
 import { api } from "~/utils/api";
@@ -41,7 +41,7 @@ const Dashboard: NextPage = () => {
 };
 
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     // Fetch the user's session on the server side
     const session = await getSession(context);
 

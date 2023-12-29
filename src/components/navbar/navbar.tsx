@@ -44,7 +44,7 @@ export const Navbar: React.FC = () => {
                                         })
                                     }
                                 }}>Log out</Button> : <Button
-                                    onClick={() => router.push('/login')}
+                                    onClick={async () => await router.push('/login')}
                                     overrides={{
                                         BaseButton: {
                                             style: () => ({
@@ -86,9 +86,9 @@ export const Navbar: React.FC = () => {
                                         })
                                     }
                                 }}>Log out</Button> : <Button
-                                    onClick={() => {
+                                    onClick={async () => {
                                         setNav(false);
-                                        router.push('/login')
+                                        await router.push('/login')
                                     }}
                                     overrides={{
                                         BaseButton: {
