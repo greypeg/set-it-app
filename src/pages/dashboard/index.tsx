@@ -1,8 +1,10 @@
 import { Spinner } from "baseui/spinner";
 import { NextPage } from "next";
+import { getSession, useSession } from "next-auth/react";
 import { CreateBusinessModal } from "~/components/business-create-form";
 import { ServiceList } from "~/components/services-list";
 import { api } from "~/utils/api";
+
 const Dashboard: NextPage = () => {
     const { data: user } = api.user.getUser.useQuery();
     const { data: business, isLoading: isBusinessLoading } = api.business.getBusiness.useQuery();
@@ -36,6 +38,27 @@ const Dashboard: NextPage = () => {
             </div>
         </div>
     );
+};
+
+
+export const getServerSideProps = async (context: any) => {
+    // Fetch the user's session on the server side
+    const session = await getSession(context);
+
+    // If the user is not authenticated, redirect to the login page
+    if (!session || !session.user) {
+        return {
+            redirect: {
+                destination: '/unathenticated',
+                permanent: false,
+            },
+        };
+    }
+
+    // If the user is authenticated, continue with the original page rendering
+    return {
+        props: {},
+    };
 };
 
 export default Dashboard;

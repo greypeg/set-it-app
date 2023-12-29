@@ -20,9 +20,9 @@ const currency = '$'
 
 export const ServiceList = ({ services, onDelete }: ServiceList) => {
     return (
-        <div className='flex flex-col items-center md:w-1/4 w-3/4'>
-            <h3 className="text-2xl font-bold mb-4">Services Offered</h3>
-            <CreateServiceModal />
+        <div className='flex flex-col items-center md:w-1/4 w-3/4 gap-2'>
+            <h3 className="text-2xl font-bold mb-4">Services</h3>
+
             <Accordion accordion>
                 {services?.map((service: services, index) => (
                     <Panel title={service.name} key={index}>
@@ -32,7 +32,7 @@ export const ServiceList = ({ services, onDelete }: ServiceList) => {
                                 <p>{'Cost - ' + service.cost + currency}</p>
                             </div>
                             <div className='px-16 flex flex-col gap-2'>
-                                <Button shape='pill' size='compact'>Details</Button>
+                                <Button shape='pill' size='compact' onClick={() => { }}>Details</Button>
                                 <Button shape='pill' size='compact' onClick={() => onDelete(service.id)} overrides={{
                                     BaseButton: {
                                         style: () => ({
@@ -47,6 +47,7 @@ export const ServiceList = ({ services, onDelete }: ServiceList) => {
                 ))}
 
             </Accordion>
+            <CreateServiceModal />
         </div >
     );
 };

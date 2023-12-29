@@ -75,7 +75,10 @@ export const Navbar: React.FC = () => {
                     <div className='flex flex-col my-4'>
                         {session && session.user ?
                             <Button
-                                onClick={() => signOut()}
+                                onClick={async () => {
+                                    setNav(false);
+                                    await signOut({ callbackUrl: '/', redirect: true })
+                                }}
                                 overrides={{
                                     BaseButton: {
                                         style: () => ({
@@ -83,7 +86,10 @@ export const Navbar: React.FC = () => {
                                         })
                                     }
                                 }}>Log out</Button> : <Button
-                                    onClick={() => router.push('/login')}
+                                    onClick={() => {
+                                        setNav(false);
+                                        router.push('/login')
+                                    }}
                                     overrides={{
                                         BaseButton: {
                                             style: () => ({
