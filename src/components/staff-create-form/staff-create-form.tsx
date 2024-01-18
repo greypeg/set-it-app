@@ -6,16 +6,15 @@ import { api } from '~/utils/api';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl } from 'baseui/form-control';
 
-interface CreateServiceInputs {
+interface CreateStaffInputs {
     name: string;
-    cost: string;
-    time_required: string
+    email: string;
 }
-export const CreateServiceModal = () => {
+export const CreateStaffModal = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { handleSubmit, control } = useForm<CreateServiceInputs>({
+    const { handleSubmit, control } = useForm<CreateStaffInputs>({
         defaultValues: {
-            name: "", cost: '', time_required: ''
+            name: '', email: ''
         },
     })
     const openModal = () => {
@@ -28,35 +27,36 @@ export const CreateServiceModal = () => {
 
     const trpc = api.useContext();
 
-    const createServiceMutation = api.service.create.useMutation({
+    const createServiceMutation = api.staff.create.useMutation({
         onSettled: async () => {
             await trpc.business.getBusiness.invalidate();
         }
     });
 
-    const onSubmit: SubmitHandler<CreateServiceInputs> = (data: CreateServiceInputs) => {
+    const onSubmit: SubmitHandler<CreateStaffInputs> = (data: CreateStaffInputs) => {
         try {
             createServiceMutation.mutate({
                 name: data.name,
-                time_required: parseInt(data.time_required),
-                cost: parseInt(data.cost),
+                email: data.email,
             });
 
             console.log('Form submitted successfully!');
             closeModal();
         } catch (error) {
             // Handle any error that occurred during the mutation
-            console.error('Error creating business:', error);
+            console.error('Error staff business:', error);
         }
 
     };
 
 
     return (
-        <>
-            <Button onClick={openModal}>Create Service</Button>
+        <div className='grid items-center justify-center'>
+            <div className='flex'>
+                <Button onClick={openModal}>Add Staff</Button>
+            </div>
             <Modal isOpen={isOpen} onClose={closeModal} size={SIZE.default}>
-                <ModalHeader>Create Service Form</ModalHeader>
+                <ModalHeader>Add Staff Form</ModalHeader>
                 <ModalBody>
                     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
                         <Controller
@@ -65,38 +65,28 @@ export const CreateServiceModal = () => {
                             rules={{ required: true, }}
                             render={({ field }) => (
                                 <FormControl
-                                    label={() => "Service Name"}>
+                                    label={() => "Staff Name"}>
                                     <Input {...field} />
                                 </FormControl>
 
                             )}
                         />
                         <Controller
-                            name="cost"
+                            name="email"
                             control={control}
                             rules={{ required: true, }}
-                            render={({ field, }) => (
+                            render={({ field }) => (
                                 <FormControl
-                                    label={() => "Cost"}>
-                                    <Input type="number" {...field} />
+                                    label={() => "Staff Email"}>
+                                    <Input {...field} />
                                 </FormControl>
-                            )}
-                        />
-                        <Controller
-                            name="time_required"
-                            control={control}
-                            rules={{ required: true }}
-                            render={({ field, }) => (
-                                <FormControl
-                                    label={() => "Time Required"}>
-                                    <Input type="number" {...field} />
-                                </FormControl>
+
                             )}
                         />
                         <Button type="submit">Submit</Button>
                     </form>
                 </ModalBody>
-            </Modal >
-        </>
+            </Modal>
+        </div>
     );
 };

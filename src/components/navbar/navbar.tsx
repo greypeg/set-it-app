@@ -13,7 +13,7 @@ export const Navbar: React.FC = () => {
     const handleClick = () => setNav(!nav);
     const { data: session } = useSession();
     return (
-        <div className='w-full h-[80px] z-10 bg-white drop-shadow-lg'>
+        <div className='w-full h-[80px] z-50 bg-white drop-shadow-lg'>
             <div className='px-2 flex md:justify-around justify-between items-center w-full h-full'>
                 <div className='flex items-center'>
                     <h1 className='mr-4 text-3xl font-bold sm:text-4xl'>SetApp.</h1>
