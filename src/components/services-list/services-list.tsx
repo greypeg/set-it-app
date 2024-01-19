@@ -42,7 +42,6 @@ export const ServiceList: React.FC<ServiceList> = ({ services, onDelete }) => {
                             <div className='px-10 flex sm:flex-row gap-2 flex-col justify-center'>
                                 <Button shape='pill' size='compact'>Details</Button>
                                 <Button size={SIZE.compact} shape={SHAPE.pill} onClick={() => setEditOpen(true)}>Edit</Button>
-                                <UpdateServiceModal service={service} isOpen={isEditOpen} onClose={closeModal} />
                                 <Button shape='pill' size='compact' onClick={() => onDelete(service.id)} overrides={{
                                     BaseButton: {
                                         style: () => ({
@@ -50,6 +49,7 @@ export const ServiceList: React.FC<ServiceList> = ({ services, onDelete }) => {
                                         })
                                     }
                                 }}>Delete</Button>
+                                <UpdateServiceModal service={service} isOpen={isEditOpen} onClose={closeModal} />
                             </div>
                         </div>
 

@@ -7,13 +7,14 @@ import { Tabs, Tab, FILL } from "baseui/tabs-motion";
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { ProviderList } from "~/components/providers-list";
+import { Calendar, StatefulCalendar } from "baseui/datepicker";
 
 const Dashboard: NextPage = () => {
     const { data: user } = api.user.getUser.useQuery();
     const { data: business, isLoading: isBusinessLoading, isError: isErrorBussiness, error } = api.business.getBusiness.useQuery();
-    const [activeKey, setActiveKey] = useState<React.Key>(0);
+    const [activeKey, setActiveKey] = useState<React.Key>(1);
     const trpc = api.useContext();
-
+    const [value, setValue] = useState([new Date()]);
     const deleteServiceMutation = api.service.delete.useMutation({
         onSettled: async () => {
             await trpc.business.getBusiness.invalidate();
@@ -55,7 +56,10 @@ const Dashboard: NextPage = () => {
                         <Tab title="Bookings" key="0">
                             <div className='flex flex-col items-center gap-2 md:px-12'>
                                 <h3 className="text-2xl font-bold mb-4">Bookings</h3>
-                                <p>Under construction</p>
+                                <StatefulCalendar
+                                    // use the 'onChange' prop to pull data from the component into your application state
+                                    onChange={({ date }: any) => console.log(date)}
+                                />
                             </div>
                         </Tab>
 
