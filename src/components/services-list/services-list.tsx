@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CreateServiceModal, UpdateServiceModal } from '../service-forms';
-import { Button } from 'baseui/button';
+import { Button, SIZE, SHAPE } from 'baseui/button';
 import { Accordion, Panel } from "baseui/accordion";
 
 export interface service {
@@ -19,6 +19,8 @@ interface ServiceList {
 const currency = '$'
 
 export const ServiceList: React.FC<ServiceList> = ({ services, onDelete }) => {
+    const [isEditOpen, setEditOpen] = useState(false);
+    const closeModal = () => setEditOpen(false)
     return (
         <div className='flex flex-col items-center gap-2 md:px-12'>
             <h3 className="text-2xl font-bold mb-4">Services</h3>
@@ -39,7 +41,8 @@ export const ServiceList: React.FC<ServiceList> = ({ services, onDelete }) => {
                             </div>
                             <div className='px-10 flex sm:flex-row gap-2 flex-col justify-center'>
                                 <Button shape='pill' size='compact'>Details</Button>
-                                <UpdateServiceModal service={service} />
+                                <Button size={SIZE.compact} shape={SHAPE.pill} onClick={() => setEditOpen(true)}>Edit</Button>
+                                <UpdateServiceModal service={service} isOpen={isEditOpen} onClose={closeModal} />
                                 <Button shape='pill' size='compact' onClick={() => onDelete(service.id)} overrides={{
                                     BaseButton: {
                                         style: () => ({

@@ -15,23 +15,17 @@ interface UpdateServiceInputs {
 }
 interface ModalInterface {
     service: service;
+    isOpen: boolean;
+    onClose: () => void
 }
 
-export const UpdateServiceModal: React.FC<ModalInterface> = ({ service }) => {
+export const UpdateServiceModal: React.FC<ModalInterface> = ({ service, isOpen, onClose }) => {
     const { id, cost, time_required, name } = service
-    const [isOpen, setIsOpen] = useState(false);
     const { handleSubmit, control } = useForm<UpdateServiceInputs>({
         defaultValues: {
             name: name, cost: cost.toString(), time_required: time_required.toString()
         },
     })
-    const openModal = () => {
-        setIsOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsOpen(false);
-    };
 
     const trpc = api.useContext();
 
@@ -51,7 +45,7 @@ export const UpdateServiceModal: React.FC<ModalInterface> = ({ service }) => {
             });
 
             console.log('Form submitted successfully!');
-            closeModal();
+            onClose();
         } catch (error) {
             // Handle any error that occurred during the mutation
             console.error('Error creating business:', error);
@@ -61,8 +55,7 @@ export const UpdateServiceModal: React.FC<ModalInterface> = ({ service }) => {
 
     return (
         <div className='flex items-center justify-center'>
-            <Button size={SIZE.compact} shape={SHAPE.pill} onClick={openModal}>Edit</Button>
-            <Modal isOpen={isOpen} onClose={closeModal} size={MODALSIZE.default}>
+            <Modal isOpen={isOpen} onClose={onClose} size={MODALSIZE.default}>
                 <ModalHeader>Edit Service Form</ModalHeader>
                 <ModalBody>
                     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
