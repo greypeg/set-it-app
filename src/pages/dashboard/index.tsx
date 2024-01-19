@@ -58,7 +58,6 @@ const Dashboard: NextPage = () => {
                                 <h3 className="text-2xl font-bold mb-4">Bookings</h3>
                                 <StatefulCalendar
                                     // use the 'onChange' prop to pull data from the component into your application state
-                                    onChange={({ date }: any) => console.log(date)}
                                 />
                             </div>
                         </Tab>
