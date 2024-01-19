@@ -1,1 +1,0 @@
-export { CreateServiceModal } from './create-service-modal'

@@ -1,0 +1,1 @@
+export { ViewDetailsModal } from "./view-details-modal"

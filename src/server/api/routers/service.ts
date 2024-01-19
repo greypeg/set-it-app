@@ -10,6 +10,13 @@ const serviceInput = z.object({
   time_required: z.number(),
 });
 
+const updateServiceInput = z.object({
+  name: z.string({ required_error: "Name" }).min(1).max(50),
+  cost: z.number(),
+  time_required: z.number(),
+  id: z.number()
+});
+
 const deleteSerivce = z.object({
   id: z.number()
 });
@@ -38,6 +45,38 @@ export const serviceRouter = createTRPCRouter({
     return createdService;
   }),
 
+  update: protectedProcedure.input(updateServiceInput).mutation(async ({ ctx, input }) => {
+    const { id, ...updatedFields } = input;
+    const userId = ctx.session.user?.id;
+
+    if (!userId) {
+      throw new Error('User not authenticated');
+    }
+
+    const user = await ctx.prisma.user.findUnique({
+      where: { id: userId },
+      include: { business: { include: { services: true } } },
+    });
+
+    if (!user || !user.business) {
+      throw new Error('User does not have a business');
+    }
+
+    const serviceToUpdate = user.business.services.find((service) => service.id === id);
+
+    if (!serviceToUpdate) {
+      throw new Error('Service not found');
+    }
+
+    // Update the service with the provided fields
+    const updatedService = await ctx.prisma.service.update({
+      where: { id },
+      data: updatedFields,
+    });
+
+    return updatedService;
+  }),
+
   delete: protectedProcedure.input(deleteSerivce).mutation(async ({ ctx, input }) => {
     const { id } = input;
     const userId = ctx.session.user?.id;
@@ -61,6 +100,4 @@ export const serviceRouter = createTRPCRouter({
 
     return deletedService;
   }),
-
-  // update: protectedProcedure.input(z.number({ required_error: "id" })).mutation(async ({ ctx }) => { })
 });

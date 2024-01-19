@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, SIZE } from 'baseui/modal';
-import { Button } from 'baseui/button';
+import { Modal, ModalHeader, ModalBody, SIZE as MODALSIZE } from 'baseui/modal';
+import { Button, SHAPE, SIZE } from 'baseui/button';
 import { Input } from 'baseui/input';
 import { api } from '~/utils/api';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl } from 'baseui/form-control';
+import { Provider } from '../providers-list/providers-list';
 
-interface CreateStaffInputs {
+interface UpdateStaffInputs {
     name: string;
-    email: string;
+    email: string
+    id: number;
 }
-export const CreateStaffModal = () => {
+
+interface ModalProps {
+    provider: Provider;
+}
+
+export const UpdateStaffModal: React.FC<ModalProps> = ({ provider }) => {
+    const { id, name, email } = provider;
     const [isOpen, setIsOpen] = useState(false);
-    const { handleSubmit, control } = useForm<CreateStaffInputs>({
+    const { handleSubmit, control } = useForm<UpdateStaffInputs>({
         defaultValues: {
-            name: '', email: ''
+            name: name, email: email, id: id
         },
     })
     const openModal = () => {
@@ -27,36 +35,32 @@ export const CreateStaffModal = () => {
 
     const trpc = api.useContext();
 
-    const createServiceMutation = api.staff.create.useMutation({
+    const updateStaffMutation = api.staff.update.useMutation({
         onSettled: async () => {
             await trpc.business.getBusiness.invalidate();
         }
     });
 
-    const onSubmit: SubmitHandler<CreateStaffInputs> = (data: CreateStaffInputs) => {
+    const onSubmit: SubmitHandler<UpdateStaffInputs> = (data: UpdateStaffInputs) => {
         try {
-            createServiceMutation.mutate({
+            updateStaffMutation.mutate({
+                id: id,
                 name: data.name,
                 email: data.email,
             });
-
-            console.log('Form submitted successfully!');
             closeModal();
         } catch (error) {
             // Handle any error that occurred during the mutation
             console.error('Error staff business:', error);
         }
-
     };
 
 
     return (
-        <div className='grid items-center justify-center'>
-            <div className='flex'>
-                <Button onClick={openModal}>Add Staff</Button>
-            </div>
-            <Modal isOpen={isOpen} onClose={closeModal} size={SIZE.default}>
-                <ModalHeader>Add Staff Form</ModalHeader>
+        <div className='flex items-center justify-center'>
+            <Button size={SIZE.compact} shape={SHAPE.pill} onClick={openModal}>Edit</Button>
+            <Modal isOpen={isOpen} onClose={closeModal} size={MODALSIZE.default}>
+                <ModalHeader>Edit Provider Form</ModalHeader>
                 <ModalBody>
                     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
                         <Controller
@@ -68,7 +72,6 @@ export const CreateStaffModal = () => {
                                     label={() => "Staff Name"}>
                                     <Input {...field} />
                                 </FormControl>
-
                             )}
                         />
                         <Controller
@@ -80,7 +83,6 @@ export const CreateStaffModal = () => {
                                     label={() => "Staff Email"}>
                                     <Input {...field} />
                                 </FormControl>
-
                             )}
                         />
                         <Button type="submit">Submit</Button>

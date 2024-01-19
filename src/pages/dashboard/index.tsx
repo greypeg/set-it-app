@@ -46,7 +46,6 @@ const Dashboard: NextPage = () => {
                     <span className="text-[#5856B9]">{user.business?.name}</span>
                 </h1>
                 }
-                {/* <ServiceList services={business?.services} onDelete={onDelete} /> */}
                 <div className="md:w-3/5 w-full md:px-3 z-0">
                     <Tabs
                         activeKey={activeKey}
@@ -54,7 +53,10 @@ const Dashboard: NextPage = () => {
                         fill={FILL.fixed}
                     >
                         <Tab title="Bookings" key="0">
-                            Bookings
+                            <div className='flex flex-col items-center gap-2 md:px-12'>
+                                <h3 className="text-2xl font-bold mb-4">Bookings</h3>
+                                <p>Under construction</p>
+                            </div>
                         </Tab>
 
                         <Tab title="Services" key="1" >
